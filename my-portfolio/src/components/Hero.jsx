@@ -33,7 +33,7 @@ const Hero = () => {
           </div>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            React developer with a strong focus on component-driven architecture, state management, API integration, and creating responsive, high-performance web apps.
+            React developer experienced in JavaScript, HTML, CSS, Tailwind CSS, and connecting applications with RESTful APIs focus on component-driven architecture, state management, API integration, and creating responsive, high-performance web apps.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
