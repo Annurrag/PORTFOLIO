@@ -5,55 +5,55 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Frontend",
-      skills: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Redux","Axios", "Javascript(ES6+)"],
+      skills: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Redux", "Axios", "Javascript(ES6+)", "HTML5", "CSS3", "Webpack", "Babel", "ESLint","Responsive Design", "UI/UX Principles", "Cross-Browser Compatibility", "Performance Optimization", "Accessibility (a11y)", "Testing (Jest, React Testing Library)", "Version Control (Git)", ],
     },
     {
       title: "Backend",
-      skills: ["Node.js", "Express", "PostgreSQL", "MongoDB", "REST APIs"],
+      skills: ["Node.js", "Express", "PostgreSQL", "MongoDB", "REST APIs","JSON API", "Authentication & Authorization", "Database Design", "Server-Side Rendering (SSR)", "API Integration", "Error Handling & Logging", "Deployment & Hosting"],
     },
     {
-      title: "Tools & Other",
-      skills: ["Git", "Postman", "JIRA", "Figma", "VS Code"],
+      title: "Database, Tools, Cloud & AI ",
+      skills: ["MongoDB","MySQL", "SQL","Git", "Postman", "JIRA", "Figma", "VS Code", "Prettier", "CI/CD Pipelines", "Docker", "Cloud Services (AWS, Vercel)", "Agile Methodologies", "Scrum", "AI Tools (ChatGPT, MidJourney, DALL·E)", "Prompt Engineering" ],
     },
+    
   ];
 
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+        <div className="max-w-5xl mx-auto text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground">
             Skills & <span className="text-gradient">Expertise</span>
           </h2>
-          <div className="w-20 h-1 gradient-accent mx-auto mb-12" />
+          <div className="section-divider mx-auto mt-4" />
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {skillCategories.map((category, index) => (
-              <Card
-                key={index}
-                className="bg-card border-border hover:border-primary/50 transition-smooth"
-              >
-                <CardHeader>
-                  <CardTitle className="text-xl flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-primary" />
-                    {category.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <Badge
-                        key={skillIndex}
-                        variant="secondary"
-                        className="bg-secondary hover:bg-primary hover:text-primary-foreground transition-smooth cursor-default"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+        <div className="grid gap-6 lg:grid-cols-3">
+          {skillCategories.map((category, index) => (
+            <Card
+              key={index}
+              className="rounded-[2rem] border border-border bg-card p-6 shadow-2xl transition-all hover:-translate-y-1 dark:bg-slate-950 dark:border-border"
+            >
+              <CardHeader className="pb-4 border-b border-border">
+                <CardTitle className="text-xl font-semibold text-foreground">
+                  {category.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="mt-4">
+                <div className="flex flex-wrap gap-3">
+                  {category.skills.map((skill, skillIndex) => (
+                    <Badge
+                      key={skillIndex}
+                      variant="outline"
+                      className="rounded-full border-border bg-secondary/10 px-3 py-1 text-xs text-muted-foreground dark:border-border dark:bg-secondary/20 dark:text-foreground"
+                    >
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

@@ -6,56 +6,65 @@ const About = () => {
     {
       icon: Code2,
       title: "Clean Code",
-      description: "Writing maintainable, scalable code with best practices.",
+      description: "Maintainable architecture with readable, reusable components.",
     },
     {
       icon: Palette,
       title: "Design Focus",
-      description: "Creating beautiful, intuitive user interfaces.",
+      description: "Accessible user experiences with polished visual detail.",
     },
     {
       icon: Zap,
       title: "Performance",
-      description: "Optimizing for speed and user experience.",
+      description: "Fast, optimized apps for smooth browsing across devices.",
     },
   ];
 
   return (
-    <section id="about" className="py-20 bg-secondary/50">
+    <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            About <span className="text-gradient">Me</span>
-          </h2>
-          <div className="w-20 h-1 gradient-accent mx-auto mb-12" />
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
+              About <span className="text-gradient">Me</span>
+            </h2>
+            <div className="section-divider mx-auto mt-4" />
+          </div>
 
-          <div className="space-y-8">
-            <Card className="bg-card border-border hover:border-primary/50 transition-smooth">
-              <CardContent className="p-8">
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Results-driven React Developer with hands-on experience building responsive, high-performance web applications using JavaScript (ES6+), React, HTML5, CSS3, and Tailwind CSS. Skilled in component-based architecture, state management, RESTful API integration, and UI optimization. Adept at writing clean, maintainable code and delivering user-focused solutions aligned with modern frontend development standards.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] items-start">
+            <div className="rounded-[2rem] border border-border bg-card p-8 shadow-2xl transition-colors duration-300 dark:bg-slate-950 dark:border-border dark:text-foreground">
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Results-driven React developer with experience delivering responsive and user-friendly web solutions. I build component-rich interfaces using modern frontend stacks, maintain clean state architecture, and integrate APIs with a focus on performance, accessibility, and polished interaction.
+              </p>
 
-            <div className="grid md:grid-cols-3 gap-6">
+              <div className="mt-8 grid sm:grid-cols-2 gap-4 text-sm">
+                <div className="rounded-3xl border border-border bg-card p-5 text-foreground shadow-sm transition-colors duration-300 dark:bg-slate-950 dark:border-border dark:text-foreground">
+                  <p className="text-2xl font-semibold">React</p>
+                  <p className="mt-2 text-muted-foreground">Component-driven development with hooks and state management.</p>
+                </div>
+                <div className="rounded-3xl border border-border bg-card p-5 text-foreground shadow-sm transition-colors duration-300 dark:bg-slate-950 dark:border-border dark:text-foreground">
+                  <p className="text-2xl font-semibold">Responsive</p>
+                  <p className="mt-2 text-muted-foreground">Mobile-first design and high-quality desktop layouts.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
               {highlights.map((highlight, index) => {
                 const Icon = highlight.icon;
                 return (
                   <Card
                     key={index}
-                    className="bg-card border-border hover:border-primary/50 hover:scale-105 transition-smooth group"
+                    className="rounded-[1.75rem] border border-border bg-card p-6 transition-all hover:-translate-y-1 shadow-xl dark:bg-slate-950 dark:border-border"
                   >
-                    <CardContent className="p-6 text-center space-y-3">
-                      <div className="inline-flex p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-smooth">
-                        <Icon className="h-8 w-8 text-primary" />
+                    <CardContent className="space-y-4">
+                      <div className="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-primary/10 text-primary">
+                        <Icon className="h-6 w-6" />
                       </div>
-                      <h3 className="text-xl font-semibold">
-                        {highlight.title}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        {highlight.description}
-                      </p>
+                      <div>
+                        <h3 className="text-xl font-semibold text-foreground">{highlight.title}</h3>
+                        <p className="mt-2 text-muted-foreground">{highlight.description}</p>
+                      </div>
                     </CardContent>
                   </Card>
                 );

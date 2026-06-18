@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -9,6 +9,7 @@ import {
 import project1 from "../assets/project1.jpg";
 import project2 from "../assets/project2.jpg";
 import project3 from "../assets/project3.jpg";
+import project4 from "../assets/project4.jpg";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ExternalLink, Github } from "lucide-react";
@@ -33,6 +34,15 @@ const Projects = () => {
       github: "https://github.com/Annurrag/Car-rental-website/",
       demo: "https://car-rental-website-sigma.vercel.app/",
     },
+    {
+      title: "Memory Card Game with AI Integration",
+      description:
+      "Developed an AI-powered memory card game using React.js, Next.js, and Tailwind CSS, integrating Gemini AI for personalized gameplay insights while delivering dynamic rendering, smooth animations, responsive design, and accessible user experiences",
+      image: project4,
+      tags: [ "React.js", "Next.js", "Gemini AI", "Tailwind CSS" ],
+      github: "https://github.com/Annurrag/Memory-Card-Game",
+      demo: "https://memory-card-game-5s6q.onrender.com/",
+    },
 
     {
       title: "E-Commerce App",
@@ -42,49 +52,60 @@ const Projects = () => {
       tags: ["Javascript","HTML", "CSS"],
       github: "https://github.com/Annurrag/E-commerce-website",
       demo: "https://annurrag.github.io/E-commerce-website/home.html",
-    },
+    }
+    
   ];
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 3;
+  const totalPages = Math.ceil(projects.length / pageSize);
+  const currentProjects = projects.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
   return (
-    <section id="projects" className="py-20 bg-secondary/50">
+    <section id="projects" className="py-20 section-surface-light">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            Featured <span className="text-gradient">Projects</span>
-          </h2>
-          <div className="w-20 h-1 gradient-accent mx-auto mb-12" />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
+              Featured <span className="text-gradient">Projects</span>
+            </h2>
+            <div className="section-divider mx-auto mt-4" />
+          </div>
+          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {currentProjects.map((project, index) => (
               <Card
                 key={index}
-                className="bg-card border-border hover:border-primary/50 transition-smooth overflow-hidden group"
+                className="rounded-[2rem] border border-border bg-card overflow-hidden shadow-2xl transition-all hover:-translate-y-1 hover:shadow-2xl/40 group dark:bg-slate-950 dark:border-border"
               >
-                <div className="relative overflow-hidden aspect-video">
+                <div className="relative overflow-hidden aspect-[4/3] bg-secondary/10 dark:bg-secondary/20">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity dark:from-white/10" />
+                  <div className="absolute left-4 bottom-4 rounded-full bg-primary/10 px-3 py-1 text-xs uppercase tracking-[0.22em] text-primary">
+                    Featured
+                  </div>
                 </div>
-                <CardHeader>
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    {project.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 p-6">
+                  <div>
+                    <CardTitle className="text-2xl font-semibold text-foreground">{project.title}</CardTitle>
+                    <CardDescription className="mt-2 text-sm text-muted-foreground">
+                      {project.description}
+                    </CardDescription>
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, idx) => (
-                      <Badge key={idx} variant="secondary" className="text-xs">
+                      <Badge key={idx} variant="outline" className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                         {tag}
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex gap-3">
+                  <div className="grid gap-3 sm:grid-cols-2">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-1 border-border hover:bg-secondary transition-smooth"
+                      className="flex-1 border-border text-foreground hover:border-primary hover:bg-primary/15 hover:text-foreground dark:border-border dark:text-foreground dark:hover:bg-primary/10 transition-all"
                       asChild
                     >
                       <a
@@ -98,7 +119,7 @@ const Projects = () => {
                     </Button>
                     <Button
                       size="sm"
-                      className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground transition-smooth"
+                      className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
                       asChild
                     >
                       <a
@@ -114,6 +135,38 @@ const Projects = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-border text-foreground hover:border-primary hover:bg-primary/15 hover:text-foreground dark:text-foreground dark:hover:bg-primary/10 transition-all"
+              onClick={() => setCurrentPage((page) => Math.max(page - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </Button>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <Button
+                key={i}
+                variant={currentPage === i + 1 ? "default" : "outline"}
+                size="sm"
+                className={currentPage === i + 1 ? "bg-primary text-primary-foreground" : "border-border text-foreground hover:border-primary hover:bg-primary/15 hover:text-foreground dark:text-foreground dark:hover:bg-primary/10"}
+                onClick={() => setCurrentPage(i + 1)}
+              >
+                {i + 1}
+              </Button>
+            ))}
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-border text-foreground hover:border-primary hover:bg-primary/15 hover:text-foreground dark:text-foreground dark:hover:bg-primary/10 transition-all"
+              onClick={() => setCurrentPage((page) => Math.min(page + 1, totalPages))}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </Button>
           </div>
         </div>
       </div>
